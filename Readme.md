@@ -21,4 +21,16 @@ npm install
 ```
 
 ### Configuration
-edit the config.json file to match your database requirement
+edit the config.json in config folder file to match your database requirement
+
+then running the database migration (generating table in mysql database)
+```
+sequelize db:migrate
+```
+
+### Running the server
+run the server using this command
+```
+node app.js
+```
+
