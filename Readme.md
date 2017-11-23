@@ -1,1 +1,24 @@
-hai
+# Contact REST API
+
+this project demonstrate how to create REST API using node.js using sequelize as ORM to access data from mysql
+
+## Getting Started
+
+First of all make sure you already installing Node.js and npm in your system. you can download the installer here https://nodejs.org/en/
+
+### Installation
+
+install express-generator and sequelize-cli
+
+```
+npm install -g sequelize-cli express-generator
+```
+
+next, install all dependencies needed to run the server
+
+```
+npm install
+```
+
+### Configuration
+edit the config.json file to match your database requirement
