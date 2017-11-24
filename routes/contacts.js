@@ -16,6 +16,24 @@ router.get('/', function(req, res, next) {
 			error: error
 		}))
 });
+
+router.get('/:id', function(req, res, next) {
+	const contact_id = req.params.id;
+	
+	model.Contacts.find({
+		where: {
+			id: contact_id
+		}
+	}).then(contact => res.json({
+		error: false,
+		data: contact
+	})).catch(error => res.json({
+		error: true,
+		data:[],
+		error: error
+	}))
+
+});
  
  
 /* POST new contacts. */
@@ -25,14 +43,20 @@ router.post('/', function(req, res, next) {
 		last_name,
 		phone,
 		email,
-		address
+		address,
+		gender,
+		company,
+		status
 	} = req.body;
 	model.Contacts.create({
 		first_name: first_name,
 		last_name: last_name,
 		phone: phone,
 		email: email,
-		address: address
+		address: address,
+		gender: gender,
+		company: company,
+		status : status
 	}).then(contacts=> res.status(201).json({
 		error: false,
 		data: contacts,
