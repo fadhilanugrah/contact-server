@@ -1,4 +1,6 @@
 var express = require('express');
+var https = require('https');
+var fs = require('fs');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -9,6 +11,7 @@ var cors = require('cors')
 var index = require('./routes/index');
 var users = require('./routes/users');
 var contacts = require('./routes/contacts');
+var orders = require('./routes/orders');
 
 var app = express();
 
@@ -18,7 +21,6 @@ app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.listen(3000)
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -27,13 +29,14 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(cors({
-	origin: 'http://localhost:4200'
+	origin: 'https://localhost:4200'
 }));
 
 app.options('*', cors())
 app.use('/', index);
 app.use('/users', users);
 app.use('/contacts', contacts);
+app.use('/orders', orders);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -53,8 +56,10 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-//enable cors
-
+https.createServer({
+  key: fs.readFileSync('./ssl/70686662_localhost_3000.key'),
+  cert: fs.readFileSync('./ssl/70686662_localhost_3000.cert')
+}, app).listen(3000);
 
 
 
