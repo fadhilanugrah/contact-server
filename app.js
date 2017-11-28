@@ -58,7 +58,7 @@ app.use(function(err, req, res, next) {
 
 https.createServer({
   key: fs.readFileSync('./ssl/70686662_localhost_3000.key'),
-  cert: fs.readFileSync('./ssl/70686662_localhost_3000.cert')
+  cert: fs.readFileSync('./ssl/70686662_localhost_3000.cer')
 }, app).listen(3000);
 
 
